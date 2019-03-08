@@ -1,0 +1,42 @@
+---
+title: "677 Homework March 8"
+author: "Albert Ding"
+date: "March 7, 2019"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+1. There is insufficient evidence to show that the distribution is not uniform given the p-value of 0.3501. 
+
+```{r}
+maybe_uni<-read.table("maybe_uniform.txt", header = FALSE)
+ks.test(maybe_uni, "punif")
+```
+
+2. At alpha level 0.05 we can reject the null value that the distribution is drawn from the normal distribution. 
+
+```{r}
+maybe_norm<-read.table("maybe_normal.txt", header = FALSE)
+ks.test(maybe_norm, "pnorm", 26, 4)
+
+```
+
+3. There is insufficient evidence to reject the null that the samples are drawn from the same distribution.  
+```{r}
+maybe1<-c(0.61, 0.29, 0.06, 0.59, -1.73, -0.74, 0.51, -0.56, -0.39, 1.64, 0.05, -0.06, 0.64, -0.82, 0.31, 1.77, 1.09, -1.28, 2.36, 1.31, 1.05, -0.32, -0.40, 1.06, -2.47)
+maybe2<-c(2.20, 1.66, 1.38, 0.20, 0.36, 0.00, 0.96, 1.56, 0.44, 1.50, -0.30, 0.66, 2.31, 3.29, -0.27, -0.37, 0.38, 0.70, 0.52, -0.71)
+ks.test(maybe1, maybe2)
+
+```
+4. There is insufficient evidence to reject the null that the samples are drawn from the same distribution. D is equal to 0.177.
+
+```{r}
+normsamp<-readRDS("norm_sample.Rdata")
+ks.test(normsamp, "pnorm",0,1)
+ecdf(normsamp)
+pnorm(0,1)
+```
+5. Not sure about this one.
